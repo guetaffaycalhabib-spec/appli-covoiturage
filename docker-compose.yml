@@ -1,0 +1,29 @@
+# Environnement de développement local : base PostgreSQL (avec PostGIS pour la suite) et API.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: covoiturage
+    ports: ["5432:5432"]
+    volumes: [db-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    environment:
+      # Fournisseur SMS « console » : développement uniquement.
+      NODE_ENV: development
+      DATABASE_URL: postgres://postgres:postgres@db:5432/covoiturage
+      JWT_ACCESS_SECRET: dev-access-secret
+      SMS_PROVIDERS: console
+    ports: ["3000:3000"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:

@@ -1,0 +1,3893 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "HealthController_check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Sonde de disponibilité : l'API répond et la base est joignable.",
+        "tags": [
+          "Exploitation"
+        ]
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "operationId": "NotificationsController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/read-all": {
+      "post": {
+        "operationId": "NotificationsController_readAll",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/{id}/read": {
+      "post": {
+        "operationId": "NotificationsController_read",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "operationId": "UsersController_me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      },
+      "patch": {
+        "operationId": "UsersController_update",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_remove",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      }
+    },
+    "/api/v1/me/emergency-contacts": {
+      "get": {
+        "operationId": "UsersController_contacts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmergencyContact"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      },
+      "put": {
+        "operationId": "UsersController_replaceContacts",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmergencyContactsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmergencyContact"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      }
+    },
+    "/api/v1/me/driver-charter": {
+      "post": {
+        "operationId": "UsersController_acceptCharter",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      }
+    },
+    "/api/v1/me/blocks/{userId}": {
+      "post": {
+        "operationId": "UsersController_block",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_unblock",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "operationId": "UsersController_profile",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Profil"
+        ]
+      }
+    },
+    "/api/v1/auth/otp/request": {
+      "post": {
+        "operationId": "AuthController_request",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentification"
+        ]
+      }
+    },
+    "/api/v1/auth/otp/verify": {
+      "post": {
+        "operationId": "AuthController_verify",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentification"
+        ]
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "operationId": "AuthController_refresh",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentification"
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentification"
+        ]
+      }
+    },
+    "/api/v1/auth/logout-all": {
+      "post": {
+        "operationId": "AuthController_logoutAll",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Authentification"
+        ]
+      }
+    },
+    "/api/v1/vehicles": {
+      "post": {
+        "operationId": "VehiclesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVehicleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Véhicules"
+        ]
+      },
+      "get": {
+        "operationId": "VehiclesController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vehicle"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Véhicules"
+        ]
+      }
+    },
+    "/api/v1/vehicles/{id}": {
+      "patch": {
+        "operationId": "VehiclesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVehicleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Véhicules"
+        ]
+      },
+      "delete": {
+        "operationId": "VehiclesController_deactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Véhicules"
+        ]
+      }
+    },
+    "/api/v1/kyc/documents": {
+      "post": {
+        "operationId": "KycController_submit",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitDocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KycDocument"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "KYC"
+        ]
+      }
+    },
+    "/api/v1/kyc/status": {
+      "get": {
+        "operationId": "KycController_status",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "KYC"
+        ]
+      }
+    },
+    "/api/v1/geo/wilayas": {
+      "get": {
+        "operationId": "GeoController_wilayas",
+        "parameters": [
+          {
+            "name": "q",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Référentiel géographique"
+        ]
+      }
+    },
+    "/api/v1/wallet": {
+      "get": {
+        "operationId": "WalletController_statement",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Portefeuille"
+        ]
+      }
+    },
+    "/api/v1/trips/quote": {
+      "post": {
+        "operationId": "TripsController_quote",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteTripDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips": {
+      "post": {
+        "operationId": "TripsController_publish",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishTripDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/search": {
+      "get": {
+        "operationId": "TripsController_search",
+        "parameters": [
+          {
+            "name": "fromLat",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "fromLng",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "toLat",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "toLng",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "fromWilaya",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 58,
+              "type": "number"
+            }
+          },
+          {
+            "name": "toWilaya",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 58,
+              "type": "number"
+            }
+          },
+          {
+            "name": "date",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "seats",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 8,
+              "type": "number"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "departure",
+                "price",
+                "rating"
+              ]
+            }
+          },
+          {
+            "name": "maxPrice",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minRating",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "womenOnly",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "instantOnly",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "smoking",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pets",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/mine": {
+      "get": {
+        "operationId": "TripsController_mine",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Trip"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/demand-map": {
+      "get": {
+        "operationId": "TripsController_demandMap",
+        "parameters": [
+          {
+            "name": "date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}": {
+      "get": {
+        "operationId": "TripsController_detail",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      },
+      "patch": {
+        "operationId": "TripsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTripDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/cancel": {
+      "post": {
+        "operationId": "TripsController_cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/start": {
+      "post": {
+        "operationId": "TripsController_start",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/complete": {
+      "post": {
+        "operationId": "TripsController_complete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trip"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/bookings": {
+      "get": {
+        "operationId": "TripsController_tripBookings",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      },
+      "post": {
+        "operationId": "TripsController_book",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idempotency-key",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Trajets"
+        ]
+      }
+    },
+    "/api/v1/bookings": {
+      "get": {
+        "operationId": "BookingsController_mine",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Booking"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}": {
+      "get": {
+        "operationId": "BookingsController_view",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/accept": {
+      "post": {
+        "operationId": "BookingsController_accept",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/refuse": {
+      "post": {
+        "operationId": "BookingsController_refuse",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OptionalReasonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/cancel": {
+      "post": {
+        "operationId": "BookingsController_cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/remove": {
+      "post": {
+        "operationId": "BookingsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/board": {
+      "post": {
+        "operationId": "BookingsController_board",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PickupCodeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/no-show": {
+      "post": {
+        "operationId": "BookingsController_noShow",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PositionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/bookings/{id}/dropoff": {
+      "post": {
+        "operationId": "BookingsController_dropoff",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Réservations"
+        ]
+      }
+    },
+    "/api/v1/trip-alerts": {
+      "post": {
+        "operationId": "TripAlertsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAlertDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripAlert"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Alertes de trajet"
+        ]
+      },
+      "get": {
+        "operationId": "TripAlertsController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TripAlert"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Alertes de trajet"
+        ]
+      }
+    },
+    "/api/v1/trip-alerts/{id}": {
+      "delete": {
+        "operationId": "TripAlertsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Alertes de trajet"
+        ]
+      }
+    },
+    "/api/v1/bookings/{bookingId}/messages": {
+      "get": {
+        "operationId": "MessagingController_list",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Message"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Messagerie"
+        ]
+      },
+      "post": {
+        "operationId": "MessagingController_send",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Messagerie"
+        ]
+      }
+    },
+    "/api/v1/bookings/{bookingId}/messages/read": {
+      "post": {
+        "operationId": "MessagingController_read",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Messagerie"
+        ]
+      }
+    },
+    "/api/v1/bookings/{bookingId}/reviews": {
+      "post": {
+        "operationId": "ReviewsController_create",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Avis"
+        ]
+      }
+    },
+    "/api/v1/users/{id}/reviews": {
+      "get": {
+        "operationId": "ReviewsController_list",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Avis"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/positions": {
+      "post": {
+        "operationId": "SafetyController_position",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PositionUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/position": {
+      "get": {
+        "operationId": "SafetyController_latest",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/share-links": {
+      "post": {
+        "operationId": "SafetyController_share",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackingShare"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/share-links/{shareId}": {
+      "delete": {
+        "operationId": "SafetyController_revoke",
+        "parameters": [
+          {
+            "name": "shareId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/public/tracking/{token}": {
+      "get": {
+        "operationId": "SafetyController_publicTracking",
+        "parameters": [
+          {
+            "name": "token",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/trips/{id}/sos": {
+      "post": {
+        "operationId": "SafetyController_sos",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SosDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/reports": {
+      "post": {
+        "operationId": "SafetyController_report",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyIncident"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Suivi et sécurité"
+        ]
+      }
+    },
+    "/api/v1/admin/kyc/queue": {
+      "get": {
+        "operationId": "AdminController_kycQueue",
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "submitted",
+                "approved",
+                "needs_correction",
+                "rejected",
+                "superseded"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KycDocument"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/kyc/documents/{id}/approve": {
+      "post": {
+        "operationId": "AdminController_approve",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveDocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KycDocument"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/kyc/documents/{id}/reject": {
+      "post": {
+        "operationId": "AdminController_reject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectDocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KycDocument"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/users": {
+      "get": {
+        "operationId": "AdminController_findUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/users/{id}/suspend": {
+      "post": {
+        "operationId": "AdminController_suspend",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/users/{id}/reactivate": {
+      "post": {
+        "operationId": "AdminController_reactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "operationId": "AdminController_getSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/settings/{key}": {
+      "put": {
+        "operationId": "AdminController_setSetting",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingValueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSetting"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/pricing": {
+      "get": {
+        "operationId": "AdminController_pricing",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PricingParameter"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      },
+      "post": {
+        "operationId": "AdminController_createPricing",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PricingDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingParameter"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/wallets/{userId}/top-ups": {
+      "post": {
+        "operationId": "AdminController_topUp",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/ledger/reconciliation": {
+      "get": {
+        "operationId": "AdminController_reconciliation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/incidents": {
+      "get": {
+        "operationId": "AdminController_incidents",
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SafetyIncident"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/incidents/{id}": {
+      "patch": {
+        "operationId": "AdminController_updateIncident",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIncidentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyIncident"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/reviews/{id}/hide": {
+      "post": {
+        "operationId": "AdminController_hideReview",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/reviews/{id}/restore": {
+      "post": {
+        "operationId": "AdminController_restoreReview",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/demand-map": {
+      "get": {
+        "operationId": "AdminController_demandMap",
+        "parameters": [
+          {
+            "name": "date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    },
+    "/api/v1/admin/audit": {
+      "get": {
+        "operationId": "AdminController_auditLog",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "Administration"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "API Covoiturage inter-wilayas",
+    "description": "API principale (MVP phase 1) : comptes, KYC, trajets, réservations, suivi, sécurité, portefeuille, administration.",
+    "version": "1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "lastName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "female",
+              "male"
+            ]
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "photoRef": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "fr",
+              "ar"
+            ]
+          },
+          "womenOnlyMode": {
+            "type": "boolean"
+          }
+        }
+      },
+      "EmergencyContact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "EmergencyContactDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "phone"
+        ]
+      },
+      "EmergencyContactsDto": {
+        "type": "object",
+        "properties": {
+          "contacts": {
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmergencyContactDto"
+            }
+          }
+        },
+        "required": [
+          "contacts"
+        ]
+      },
+      "RequestOtpDto": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone"
+        ]
+      },
+      "VerifyOtpDto": {
+        "type": "object",
+        "properties": {
+          "challengeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^\\d{6}$"
+          },
+          "deviceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "challengeId",
+          "code"
+        ]
+      },
+      "RefreshDto": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "CreateVehicleDto": {
+        "type": "object",
+        "properties": {
+          "make": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "year": {
+            "type": "number",
+            "minimum": 1980,
+            "maximum": 2100
+          },
+          "color": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "plate": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 9
+          },
+          "comfort": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "confort"
+            ]
+          },
+          "equipment": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "photoRefs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "make",
+          "model",
+          "year",
+          "color",
+          "plate",
+          "seats"
+        ]
+      },
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "ownerId": {
+            "type": "string"
+          },
+          "make": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "color": {
+            "type": "string"
+          },
+          "plate": {
+            "type": "string"
+          },
+          "seats": {
+            "type": "number",
+            "description": "Capacité déclarée, place du conducteur comprise (C-12)."
+          },
+          "comfort": {
+            "type": "string"
+          },
+          "equipment": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "photoRefs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "approved",
+              "inactive"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ownerId",
+          "make",
+          "model",
+          "year",
+          "color",
+          "plate",
+          "seats",
+          "comfort",
+          "equipment",
+          "photoRefs",
+          "status",
+          "id",
+          "createdAt"
+        ]
+      },
+      "UpdateVehicleDto": {
+        "type": "object",
+        "properties": {
+          "make": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "year": {
+            "type": "number",
+            "minimum": 1980,
+            "maximum": 2100
+          },
+          "color": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          },
+          "plate": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 20
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 9
+          },
+          "comfort": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "confort"
+            ]
+          },
+          "equipment": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "photoRefs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SubmitDocumentDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "national_id",
+              "selfie",
+              "driving_license",
+              "insurance",
+              "vehicle_registration"
+            ]
+          },
+          "fileRef": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "vehicleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "type",
+          "fileRef"
+        ]
+      },
+      "KycDocument": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "national_id",
+              "selfie",
+              "driving_license",
+              "insurance",
+              "vehicle_registration"
+            ],
+            "type": "string"
+          },
+          "fileRef": {
+            "type": "string",
+            "description": "Référence du fichier dans le stockage objet chiffré ; jamais d'URL publique (S-04)."
+          },
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "submitted",
+              "approved",
+              "needs_correction",
+              "rejected",
+              "superseded"
+            ],
+            "type": "string"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewedAt": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId",
+          "type",
+          "fileRef",
+          "vehicleId",
+          "status",
+          "rejectionReason",
+          "expiresAt",
+          "reviewerId",
+          "reviewedAt",
+          "id",
+          "createdAt"
+        ]
+      },
+      "WilayaPlaceDto": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "wilaya": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 58
+          }
+        },
+        "required": [
+          "label",
+          "lat",
+          "lng",
+          "wilaya"
+        ]
+      },
+      "PlaceDto": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "wilaya": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 58
+          }
+        },
+        "required": [
+          "label",
+          "lat",
+          "lng"
+        ]
+      },
+      "QuoteTripDto": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/WilayaPlaceDto"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/WilayaPlaceDto"
+          },
+          "stops": {
+            "maxItems": 5,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceDto"
+            }
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "seats"
+        ]
+      },
+      "TripRulesDto": {
+        "type": "object",
+        "properties": {
+          "smoking": {
+            "type": "boolean"
+          },
+          "pets": {
+            "type": "boolean"
+          },
+          "luggage": {
+            "type": "string",
+            "enum": [
+              "small",
+              "medium",
+              "large"
+            ]
+          },
+          "music": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PublishTripDto": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/WilayaPlaceDto"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/WilayaPlaceDto"
+          },
+          "stops": {
+            "maxItems": 5,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceDto"
+            }
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "vehicleId": {
+            "type": "string"
+          },
+          "departureAt": {
+            "type": "string"
+          },
+          "pricePerSeat": {
+            "type": "number",
+            "minimum": 1
+          },
+          "acceptanceMode": {
+            "type": "string",
+            "enum": [
+              "instant",
+              "manual"
+            ]
+          },
+          "womenOnly": {
+            "type": "boolean"
+          },
+          "rules": {
+            "$ref": "#/components/schemas/TripRulesDto"
+          },
+          "meetingPointDescription": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "waitingToleranceMinutes": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 60
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "seats",
+          "vehicleId",
+          "departureAt",
+          "pricePerSeat"
+        ]
+      },
+      "Trip": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "UpdateTripDto": {
+        "type": "object",
+        "properties": {
+          "pricePerSeat": {
+            "type": "number",
+            "minimum": 1
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "departureAt": {
+            "type": "string"
+          },
+          "acceptanceMode": {
+            "type": "string",
+            "enum": [
+              "instant",
+              "manual"
+            ]
+          },
+          "rules": {
+            "$ref": "#/components/schemas/TripRulesDto"
+          },
+          "meetingPointDescription": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      },
+      "CancelDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "CreateBookingDto": {
+        "type": "object",
+        "properties": {
+          "seats": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "pickup": {
+            "$ref": "#/components/schemas/PlaceDto"
+          },
+          "dropoff": {
+            "$ref": "#/components/schemas/PlaceDto"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "cash",
+              "wallet"
+            ]
+          }
+        },
+        "required": [
+          "seats"
+        ]
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "OptionalReasonDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 300
+          }
+        }
+      },
+      "PickupCodeDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^\\d{4}$"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "PositionDto": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ]
+      },
+      "CreateAlertDto": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "$ref": "#/components/schemas/PlaceDto"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/PlaceDto"
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "seats": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "date"
+        ]
+      },
+      "TripAlert": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "bookingId": {
+            "type": "string"
+          },
+          "senderId": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "masked": {
+            "type": "boolean",
+            "description": "Vrai si des coordonnées ou des insultes ont été masquées."
+          },
+          "readAt": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bookingId",
+          "senderId",
+          "body",
+          "masked",
+          "readAt",
+          "id",
+          "createdAt"
+        ]
+      },
+      "SendMessageDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateReviewDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "bookingId": {
+            "type": "string"
+          },
+          "tripId": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "number"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "hidden": {
+            "type": "boolean",
+            "description": "Masqué par la modération : n'apparaît plus et ne compte plus dans la note."
+          },
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bookingId",
+          "tripId",
+          "authorId",
+          "targetId",
+          "rating",
+          "tags",
+          "comment",
+          "hidden",
+          "id",
+          "createdAt"
+        ]
+      },
+      "PositionUpdateDto": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "heading": {
+            "type": "number"
+          },
+          "speedKmh": {
+            "type": "number"
+          },
+          "accuracyM": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ]
+      },
+      "TrackingShare": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "SosDto": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        }
+      },
+      "ReportDto": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "harassment",
+              "dangerous_driving",
+              "fraud",
+              "discrimination",
+              "vehicle_mismatch",
+              "lost_item",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 2000
+          },
+          "targetUserId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tripId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bookingId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "category",
+          "description"
+        ]
+      },
+      "SafetyIncident": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "ApproveDocumentDto": {
+        "type": "object",
+        "properties": {
+          "expiresAt": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Obligatoire pour la pièce d'identité : le genre fait foi pour le mode « Entre femmes ».",
+            "enum": [
+              "female",
+              "male"
+            ]
+          }
+        }
+      },
+      "RejectDocumentDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 300
+          },
+          "allowCorrection": {
+            "type": "boolean",
+            "description": "Vrai : « à corriger » (nouvelle pièce demandée) ; faux : rejet définitif."
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "ReasonDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "SettingValueDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "PlatformSetting": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "PricingParameter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt"
+        ]
+      },
+      "PricingDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "TopUpDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateIncidentDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "in_progress",
+              "closed"
+            ]
+          },
+          "resolution": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    }
+  }
+}
