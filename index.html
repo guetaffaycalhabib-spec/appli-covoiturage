@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WinFleet</title>
+  <meta name="description" content="WinFleet – gestion de flotte, chauffeurs et sous-traitants pour transporteurs">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Win<span>Fleet</span></div>
+      <nav id="nav" aria-label="Navigation principale"></nav>
+      <div class="sidebar-foot">
+        <button type="button" class="btn ghost" id="btn-export">Exporter (JSON)</button>
+        <label class="btn ghost">Importer<input type="file" id="input-import" accept="application/json" hidden></label>
+        <button type="button" class="btn ghost" id="btn-demo">Recharger la démo</button>
+      </div>
+    </aside>
+    <main id="main" tabindex="-1"></main>
+  </div>
+
+  <dialog id="modal">
+    <form id="form" novalidate>
+      <header class="modal-head">
+        <h2 id="modal-title"></h2>
+        <button type="button" class="icon-btn" data-close aria-label="Fermer">×</button>
+      </header>
+      <div id="form-fields" class="form-grid"></div>
+      <p id="form-error" class="form-error" role="alert"></p>
+      <footer class="modal-foot">
+        <button type="button" class="btn danger" id="btn-delete">Supprimer</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn ghost" data-close>Annuler</button>
+        <button type="submit" class="btn primary">Enregistrer</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
